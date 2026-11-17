@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { ArrowDown, Check } from "lucide-react";
 
 import { SITE } from "@/lib/site";
+import { startDownload } from "@/lib/download";
 import { cn } from "@/lib/utils";
 
 type Phase = "idle" | "accepting" | "done";
@@ -36,7 +37,7 @@ export function DownloadCTA() {
     setPhase("accepting");
     window.setTimeout(() => {
       setPhase("done");
-      if (SITE.downloadUrl) window.location.href = SITE.downloadUrl;
+      if (SITE.downloadUrl) void startDownload();
     }, 1400);
   }
 

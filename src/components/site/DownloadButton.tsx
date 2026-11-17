@@ -2,6 +2,7 @@ import { Download } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
 import { SITE } from "@/lib/site";
+import { startDownload } from "@/lib/download";
 import { cn } from "@/lib/utils";
 
 type DownloadButtonProps = {

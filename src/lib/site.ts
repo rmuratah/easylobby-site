@@ -4,7 +4,9 @@ export const SITE = {
   name: "easylobby",
   discordUrl: "",
   supportEmail: "",
+  // Fallback page; the buttons try the installer itself first (src/lib/download.ts).
   downloadUrl: "https://github.com/rmuratah/easylobby-site/releases/latest",
+  releasesRepo: "rmuratah/easylobby-site",
   githubUrl: "https://github.com/rmuratah/easylobby",
   // Suggestion and bug-report destinations still need to be confirmed by the team.
   suggestionUrl: "",
