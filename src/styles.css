@@ -1,0 +1,512 @@
+/*
+ * Tailwind v4 entry: config lives here, with no tailwind.config.js or PostCSS plugin.
+ * Keep every @import in this top block. Never @import a remote URL.
+ */
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+@import "@fontsource-variable/figtree";
+
+/* Theme lives on <html data-theme="escuro|claro"> (easylobby app convention). */
+@custom-variant dark (&:where([data-theme="escuro"], [data-theme="escuro"] *));
+
+@theme inline {
+  --font-sans: "Figtree Variable", system-ui, sans-serif;
+  --font-brand: "Figtree Variable", system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-control-sm: 0.5rem;
+  --radius-control: 0.625rem;
+  --radius-control-lg: 0.75rem;
+  --radius-card: 0.875rem;
+  --radius-tile: 1.25rem;
+  --radius-panel: 1.875rem;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  /* easylobby brand roles */
+  --color-raised: var(--raised);
+  --color-teal: var(--teal);
+  --color-teal-soft: var(--teal-soft);
+  --color-teal-ink: var(--teal-ink);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-gold-ink: var(--gold-ink);
+  --color-status-online: var(--status-online);
+  --color-status-game: var(--status-game);
+  --color-status-away: var(--status-away);
+  --color-status-offline: var(--status-offline);
+  --color-avatar-1: var(--avatar-1);
+  --color-avatar-2: var(--avatar-2);
+  --color-avatar-3: var(--avatar-3);
+  --color-avatar-4: var(--avatar-4);
+  --color-avatar-5: var(--avatar-5);
+  --color-avatar-6: var(--avatar-6);
+
+  --shadow-soft: var(--el-shadow-soft);
+  --shadow-lift: var(--el-shadow-lift);
+  --shadow-glow: var(--el-shadow-glow);
+}
+
+:root,
+[data-theme="claro"] {
+  color-scheme: light;
+  --radius: 0.75rem;
+  --background: oklch(0.973 0.007 97.4);
+  --foreground: oklch(0.24 0.025 253.8);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.24 0.025 253.8);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.24 0.025 253.8);
+  --primary: oklch(0.527 0.092 213.8);
+  --primary-foreground: oklch(0.991 0.005 211);
+  --secondary: oklch(0.955 0.007 88.6);
+  --secondary-foreground: oklch(0.301 0.024 251.1);
+  --muted: oklch(0.959 0.006 84.6);
+  --muted-foreground: oklch(0.532 0.02 256.3);
+  --accent: oklch(0.946 0.03 212);
+  --accent-foreground: oklch(0.524 0.091 214);
+  --destructive: oklch(0.555 0.161 24);
+  --destructive-foreground: oklch(0.991 0.005 211);
+  --border: oklch(0.916 0.008 91.5);
+  --input: oklch(0.916 0.008 91.5);
+  --ring: oklch(0.527 0.092 213.8);
+
+  --raised: oklch(0.955 0.007 88.6);
+  --teal: oklch(0.527 0.092 213.8);
+  --teal-soft: oklch(0.946 0.03 212);
+  --teal-ink: oklch(0.524 0.091 214);
+  /* Accent ("gold" role) lightness per theme; hue/chroma come from data-accent below. */
+  --gold-l: 0.731;
+  --gold-soft-l: 0.955;
+  --gold-ink-l: 0.471;
+  --gold-g1-l: 0.813;
+  --gold-g2-l: 0.682;
+  --status-online: oklch(0.619 0.131 153.2);
+  --status-game: oklch(0.621 0.13 244.8);
+  --status-away: oklch(0.639 0.1 75.7);
+  --status-offline: oklch(0.631 0.014 255.5);
+  --avatar-1: oklch(0.799 0.09 24.3);
+  --avatar-2: oklch(0.799 0.09 212);
+  --avatar-3: oklch(0.819 0.1 84.7);
+  --avatar-4: oklch(0.8 0.08 159.9);
+  --avatar-5: oklch(0.78 0.081 300.1);
+  --avatar-6: oklch(0.801 0.07 250);
+
+  --gradient-primary: linear-gradient(
+    135deg,
+    oklch(0.569 0.106 223.4) 0%,
+    oklch(0.659 0.112 199.4) 100%
+  );
+
+  --el-shadow-soft:
+    0 1px 2px oklch(0.24 0.025 253.8 / 0.04), 0 8px 24px -14px oklch(0.24 0.025 253.8 / 0.14);
+  --el-shadow-lift:
+    0 2px 6px oklch(0.24 0.025 253.8 / 0.05),
+    0 22px 44px -20px color-mix(in oklab, var(--teal) 30%, oklch(0.24 0.025 253.8 / 0.3));
+  --el-shadow-glow: 0 10px 30px -10px color-mix(in oklab, var(--teal) 55%, transparent);
+  --el-glass: color-mix(in oklab, var(--card) 72%, transparent);
+  --el-glass-line: color-mix(in oklab, var(--card) 70%, transparent);
+  --grid-line: color-mix(in oklab, var(--foreground) 6%, transparent);
+}
+
+[data-theme="escuro"] {
+  color-scheme: dark;
+  --background: oklch(0.17 0.017 252.7);
+  --foreground: oklch(0.949 0.007 88.6);
+  --card: oklch(0.215 0.021 254.9);
+  --card-foreground: oklch(0.949 0.007 88.6);
+  --popover: oklch(0.215 0.021 254.9);
+  --popover-foreground: oklch(0.949 0.007 88.6);
+  --primary: oklch(0.679 0.11 205);
+  --primary-foreground: oklch(0.322 0.014 248.2);
+  --secondary: oklch(0.262 0.02 254.8);
+  --secondary-foreground: oklch(0.919 0.007 88.6);
+  --muted: oklch(0.253 0.02 254.9);
+  --muted-foreground: oklch(0.68 0.021 255.6);
+  --accent: oklch(0.3 0.05 214.2);
+  --accent-foreground: oklch(0.679 0.11 205);
+  --destructive: oklch(0.68 0.18 25);
+  --destructive-foreground: oklch(0.17 0.017 252.7);
+  --border: oklch(0.29 0.019 254.8);
+  --input: oklch(0.29 0.019 254.8);
+  --ring: oklch(0.679 0.11 205);
+
+  --raised: oklch(0.262 0.02 254.8);
+  --teal: oklch(0.679 0.11 205);
+  --teal-soft: oklch(0.3 0.05 214.2);
+  --teal-ink: oklch(0.679 0.11 205);
+  --gold-l: 0.779;
+  --gold-soft-l: 0.29;
+  --gold-ink-l: 0.851;
+  --gold-g1-l: 0.829;
+  --gold-g2-l: 0.694;
+  --status-online: oklch(0.739 0.15 152);
+  --status-game: oklch(0.72 0.12 239.9);
+  --status-away: oklch(0.8 0.13 75.4);
+  --status-offline: oklch(0.54 0.008 248);
+  --avatar-1: oklch(0.62 0.1 25);
+  --avatar-2: oklch(0.619 0.09 212.7);
+  --avatar-3: oklch(0.659 0.1 85);
+  --avatar-4: oklch(0.62 0.079 160.4);
+  --avatar-5: oklch(0.6 0.089 299.6);
+  --avatar-6: oklch(0.62 0.08 249.8);
+
+  --gradient-primary: linear-gradient(
+    135deg,
+    oklch(0.585 0.109 222.6) 0%,
+    oklch(0.71 0.111 199.5) 100%
+  );
+
+  --el-shadow-soft: 0 1px 2px oklch(0 0 0 / 0.25), 0 10px 28px -14px oklch(0 0 0 / 0.55);
+  --el-shadow-lift: 0 2px 6px oklch(0 0 0 / 0.3), 0 24px 48px -20px oklch(0 0 0 / 0.7);
+  --el-shadow-glow: 0 10px 32px -10px color-mix(in oklab, var(--teal) 55%, transparent);
+  --el-glass: color-mix(in oklab, var(--card) 60%, transparent);
+  --el-glass-line: oklch(1 0 0 / 0.1);
+  --grid-line: color-mix(in oklab, var(--foreground) 5%, transparent);
+}
+
+/* Fixed emerald accent, retaining the gold role names for existing utilities. */
+:root {
+  --acc-h: 160;
+  --acc-c: 0.12;
+  --acc-l: -0.04;
+}
+
+:root,
+[data-accent] {
+  --gold: oklch(calc(var(--gold-l) + var(--acc-l)) var(--acc-c) var(--acc-h));
+  --gold-soft: oklch(var(--gold-soft-l) calc(var(--acc-c) * 0.35) var(--acc-h));
+  --gold-ink: oklch(var(--gold-ink-l) calc(var(--acc-c) * 0.8) var(--acc-h));
+  --gradient-gold: linear-gradient(
+    135deg,
+    oklch(calc(var(--gold-g1-l) + var(--acc-l)) var(--acc-c) calc(var(--acc-h) + 4)) 0%,
+    oklch(calc(var(--gold-g2-l) + var(--acc-l)) calc(var(--acc-c) * 1.06) calc(var(--acc-h) - 4))
+      100%
+  );
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    transition:
+      background-color 0.4s ease,
+      color 0.4s ease;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--teal);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--teal-soft);
+    color: var(--teal-ink);
+  }
+}
+
+/* ---------- Brand utilities ---------- */
+
+@utility brand {
+  font-family: var(--font-brand);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+@utility text-display {
+  font-size: clamp(2.5rem, 6vw + 0.5rem, 5rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  font-weight: 700;
+}
+
+@utility text-headline {
+  font-size: clamp(1.875rem, 3vw + 0.75rem, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+}
+
+@utility surface {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+}
+
+@utility glass {
+  background-color: var(--el-glass);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  border: 1px solid var(--el-glass-line);
+}
+
+@utility bg-primary-gradient {
+  background-image: var(--gradient-primary);
+}
+
+@utility bg-gold-gradient {
+  background-image: var(--gradient-gold);
+}
+
+@utility text-gradient-brand {
+  background-image: linear-gradient(100deg, var(--teal) 0%, var(--teal) 45%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-hero-art {
+  background:
+    radial-gradient(
+      55% 75% at 82% 28%,
+      color-mix(in oklab, var(--teal) 30%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      45% 60% at 68% 105%,
+      color-mix(in oklab, var(--gold) 24%, transparent),
+      transparent 70%
+    );
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 75%);
+}
+
+@utility spotlight {
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in oklab, var(--teal) 14%, transparent),
+    transparent 60%
+  );
+}
+
+@utility conic-ring {
+  background: conic-gradient(
+    from var(--ring-angle, 0deg),
+    var(--teal),
+    var(--gold),
+    transparent 40%,
+    var(--teal) 70%,
+    var(--gold)
+  );
+}
+
+@utility animate-fade-up {
+  animation: el-fade-up 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@utility animate-float {
+  animation: el-float 6s ease-in-out infinite;
+}
+
+@utility animate-search-ring {
+  animation: el-search-ring 1.8s ease-out infinite;
+}
+
+@utility animate-spin-ring {
+  animation: el-spin-ring 4s linear infinite;
+}
+
+@utility animate-scroll-wheel {
+  animation: el-scroll-wheel 1.6s ease-in-out infinite;
+}
+
+@utility animate-scroll-drop {
+  animation: el-scroll-drop 2.2s cubic-bezier(0.6, 0, 0.4, 1) infinite;
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  &[data-visible="true"] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@property --ring-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes el-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes el-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes el-search-ring {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--teal) 45%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 18px color-mix(in oklab, var(--teal) 0%, transparent);
+  }
+}
+
+@keyframes el-spin-ring {
+  to {
+    --ring-angle: 360deg;
+  }
+}
+
+@keyframes el-scroll-wheel {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  80%,
+  100% {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+}
+
+@keyframes el-scroll-drop {
+  0% {
+    top: -2.5rem;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes el-burst {
+  0% {
+    transform: translate(-50%, -50%) rotate(var(--a)) translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(var(--a)) translateY(-90px) scale(0);
+    opacity: 0;
+  }
+}
+
+@utility animate-burst {
+  animation: el-burst 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-fade-up,
+  .animate-search-ring,
+  .animate-float,
+  .animate-spin-ring,
+  .animate-scroll-wheel,
+  .animate-scroll-drop,
+  .animate-burst {
+    animation: none;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---------- Animated target cursor (React Bits TargetCursor) ---------- */
+/* Color comes from theme tokens (set by the component), so it reads in both themes. */
+.target-cursor {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  pointer-events: none;
+}
+
+.target-cursor__corner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  border-style: solid;
+  border-color: var(--target-cursor-color, var(--foreground));
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+.target-cursor__dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  background: var(--target-cursor-color, var(--foreground));
+  will-change: transform;
+}
+
+.target-cursor__label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--target-cursor-color, var(--foreground));
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  will-change: transform, opacity;
+}
