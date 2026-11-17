@@ -1,12 +1,14 @@
 // Real contact/download data for the site. Empty strings mean "not provided yet":
 // the UI shows a "coming soon" state instead of a fake link.
+export const RELEASES_PAGE = "https://github.com/rmuratah/easylobby-site/releases/latest";
+
 export const SITE = {
   name: "easylobby",
   discordUrl: "",
   supportEmail: "",
-  // Fallback page; the buttons try the installer itself first (src/lib/download.ts).
-  downloadUrl: "https://github.com/rmuratah/easylobby-site/releases/latest",
-  releasesRepo: "rmuratah/easylobby-site",
+  // Direct link to the newest installer, found by the deploy workflow at build time
+  // (INSTALLER_URL). Without it, the releases page.
+  downloadUrl: import.meta.env["VITE_INSTALLER_URL"] || RELEASES_PAGE,
   githubUrl: "https://github.com/rmuratah/easylobby",
   // Suggestion and bug-report destinations still need to be confirmed by the team.
   suggestionUrl: "",

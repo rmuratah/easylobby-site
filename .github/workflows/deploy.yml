@@ -3,6 +3,9 @@ name: Publicar site
 on:
   push:
     branches: [main]
+  # Uma release publicada muda o link do botão Baixar.
+  release:
+    types: [published]
   pull_request:
   workflow_dispatch:
 
@@ -24,6 +27,14 @@ jobs:
       - run: bun install --frozen-lockfile
       - run: bun run lint
       - run: bun run test
+      - name: Link do instalador mais novo
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          url=$(gh api "repos/${{ github.repository }}/releases/latest" \
+            --jq '[.assets[] | select(.name | endswith("-setup.exe"))][0].browser_download_url // empty' || true)
+          echo "Instalador: ${url:-nenhum, o botão abre a página de releases}"
+          echo "VITE_INSTALLER_URL=$url" >> "$GITHUB_ENV"
       - name: Build
         run: bun run build
         env:
