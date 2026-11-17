@@ -4,7 +4,7 @@ export const SITE = {
   name: "easylobby",
   discordUrl: "",
   supportEmail: "",
-  downloadUrl: "https://github.com/rmuratah/easylobby/releases/latest",
+  downloadUrl: "https://github.com/rmuratah/easylobby-site/releases/latest",
   githubUrl: "https://github.com/rmuratah/easylobby",
   // Suggestion and bug-report destinations still need to be confirmed by the team.
   suggestionUrl: "",
