@@ -38,8 +38,9 @@ jobs:
       - name: Build
         run: bun run build
         env:
-          # Sem domínio próprio o Pages serve em /<repositório>/.
-          BASE_PATH: ${{ vars.BASE_PATH || format('/{0}/', github.event.repository.name) }}
+          # Servido na raiz de easylobby.com.br. Sem o domínio, defina a variável
+          # BASE_PATH do repositório como /easylobby-site/.
+          BASE_PATH: ${{ vars.BASE_PATH || '/' }}
       - name: Página 404 e .nojekyll
         run: |
           cp dist/client/index.html dist/client/404.html

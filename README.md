@@ -16,8 +16,7 @@ Para testar o build numa subpasta, como no GitHub Pages: `BASE_PATH=/easylobby-s
 
 ## Publicação
 
-O workflow [`deploy.yml`](.github/workflows/deploy.yml) gera o site e publica no GitHub Pages a cada push na `main`.
-Com domínio próprio, defina a variável `BASE_PATH` do repositório como `/` (Settings > Secrets and variables > Actions > Variables).
+O workflow [`deploy.yml`](.github/workflows/deploy.yml) gera o site e publica no GitHub Pages a cada push na `main`, em https://easylobby.com.br (domínio em `public/CNAME` e em Settings > Pages > Custom domain).
 
 ## Onde mudar o quê
 
